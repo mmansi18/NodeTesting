@@ -45,7 +45,7 @@ function assert (expected, actual, message) {
     if (expected === actual) {
         return message
     } else {
-        return "***this failed"
+        return "This failed"
         
     }
 }
@@ -60,16 +60,20 @@ console.log(assert (8, pow(2, 3), "good job"))
 
 //2-24-18 module exports
 
+module.exports = {
+    assert: function(expected, actual, message = "Testing)") {
+        if (expected === actual){
+            console.log('thumbs up ' + message)
+        } else {
+            diff= expected + "\n  " + actual;
+            console.log('thumbs down ' + message + "\n Assertion failed no match\n" + diff);
+        }
+    },
 
-assert: function(expected, actual, message = "Testing)") {
-    if (expected === actual){
-        console.log('thumbs up' + message)
-    } else {
-        diff= util.inspect(expected) + "\n  " + util.inspect(actual);
-        console.log('thumbs down' + message + "\n Assertion failed no match\n" + diff);
-    }
-}
-
-assert_true: function(actual, message){
-    assert(true, actual, message)
+    assert_true: function(actual, message){
+        this.assert(true, actual, message)
+    },
+    assert_false: function(actual, message) {
+        this.assert(false, actual, message)
+    },
 }
