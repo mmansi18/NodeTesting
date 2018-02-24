@@ -54,3 +54,22 @@ console.log(assert (6, add(4, 2), "good job"))
 console.log(assert (6, add(5, 2), "good job"))
 
 console.log(assert (8, pow(2, 3), "good job"))
+
+
+
+
+//2-24-18 module exports
+
+
+assert: function(expected, actual, message = "Testing)") {
+    if (expected === actual){
+        console.log('thumbs up' + message)
+    } else {
+        diff= util.inspect(expected) + "\n  " + util.inspect(actual);
+        console.log('thumbs down' + message + "\n Assertion failed no match\n" + diff);
+    }
+}
+
+assert_true: function(actual, message){
+    assert(true, actual, message)
+}
